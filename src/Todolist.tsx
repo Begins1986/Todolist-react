@@ -3,6 +3,7 @@ import React from 'react';
 type PropsType = {
     title: string
     tasks: Array<TaskType>
+    removeTask: (id:number)=>void
 }
 
 type TaskType = {
@@ -24,7 +25,9 @@ export const Todolist = (props: PropsType) => {
                 {/*<li><input type="checkbox" checked={true}/> <span>JS</span></li>*/}
                 {/*<li><input type="checkbox" checked={false}/> <span>React</span></li>*/}
 
-                {props.tasks.map(el => <li key={el.id}><input type="checkbox" checked={el.isDone}/>
+                {props.tasks.map(el => <li key={el.id}>
+                    <button onClick={()=>(props.removeTask(el.id))}>x</button>
+                    <input type="checkbox" checked={el.isDone}/>
                     <span>{el.title}</span></li>)}
             </ul>
             <div>
